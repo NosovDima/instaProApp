@@ -84,6 +84,8 @@ export function renderPostsPageComponent() {
   //   element: document.querySelector(".header-container"),
   // });
 
+  // HERE!!!!!!!! COMMENT BACK
+
   for (let userEl of document.querySelectorAll(".post-header")) {
     userEl.addEventListener("click", () => {
       goToPage(USER_POSTS_PAGE, {
