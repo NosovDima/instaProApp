@@ -20,7 +20,11 @@ export let user = getUserFromLocalStorage();
 export let page = null;
 export let posts = [];
 
-const getToken = () => {
+export const updatePosts = (newPosts) => {
+  posts = newPosts;
+};
+
+export const getToken = () => {
   // const token = user ? `Bearer ${user.token}` : undefined;
   const token = user
     ? `Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k`
@@ -57,15 +61,16 @@ export const goToPage = (newPage, data) => {
       page = LOADING_PAGE;
       renderApp();
 
-      return getPosts({ token: getToken() }).then((newPosts) => {
-        page = POSTS_PAGE;
-        posts = newPosts;
-        renderApp();
-        // })
-        // .catch((error) => {
-        //   console.error(error);
-        goToPage(POSTS_PAGE);
-      });
+      return getPosts({ token: getToken() })
+        .then((newPosts) => {
+          page = POSTS_PAGE;
+          posts = newPosts;
+          renderApp();
+        })
+        .catch((error) => {
+          console.error(error);
+          goToPage(POSTS_PAGE);
+        });
     }
 
     if (newPage === USER_POSTS_PAGE) {

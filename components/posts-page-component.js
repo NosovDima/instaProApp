@@ -64,7 +64,7 @@ export function renderPostsPageComponent() {
             ${post.userDescription}
           </p>
           <p class="post-date">
-            ${post.creatDate} 
+            ${post.creatDate} назад
           </p>
         </li>
       </ul>
