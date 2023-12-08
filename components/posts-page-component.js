@@ -3,7 +3,7 @@ import { renderHeaderComponent } from "./header-component.js";
 import { posts, goToPage } from "../index.js";
 
 export function renderPostsPageComponent() {
-  // TODO: реализовать рендер постов из api - almost done
+  // TODO: реализовать рендер постов из api -  Done
 
   const appEl = document.getElementById("app");
   const allPosts = posts.map((post) => {

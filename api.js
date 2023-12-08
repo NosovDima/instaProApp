@@ -2,8 +2,8 @@
 // "боевая" версия инстапро лежит в ключе prod
 
 import { updatePosts } from "./index.js";
-// const personalKey = "prod";
-const personalKey = "testwork";
+const personalKey = "prod";
+// const personalKey = "testwork";
 const baseHost = "https://webdev-hw-api.vercel.app";
 const postsHost = `${baseHost}/api/v1/${personalKey}/instapro`;
 
@@ -72,7 +72,7 @@ export function uploadImage({ file }) {
   });
 }
 
-export function UserPostsPage({ usedId }) {
+export function userPostsPage({ token, userId }) {
   return fetch(`${postsHost}/user-posts/${userId}`, {
     method: "GET",
     headers: {

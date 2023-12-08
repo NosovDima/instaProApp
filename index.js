@@ -1,4 +1,4 @@
-import { getPosts, UserPostsPage } from "./api.js";
+import { getPosts, userPostsPage } from "./api.js";
 import { renderAddPostPageComponent } from "./components/add-post-page-component.js";
 import { renderAuthPageComponent } from "./components/auth-page-component.js";
 import {
@@ -25,10 +25,10 @@ export const updatePosts = (newPosts) => {
 };
 
 export const getToken = () => {
-  // const token = user ? `Bearer ${user.token}` : undefined;
-  const token = user
-    ? `Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k`
-    : undefined;
+  const token = user ? `Bearer ${user.token}` : undefined;
+  // const token = user
+  //   ? `Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k`
+  //   : undefined;
   return token;
 };
 
@@ -81,7 +81,7 @@ export const goToPage = (newPage, data) => {
       const userId = data.userId;
       // HERE!!!!!!!!!!!!!!
 
-      return UserPostsPage({})
+      return userPostsPage({ token: getToken(), userId: userId })
         .then((newPosts) => {
           page = USER_POSTS_PAGE;
           posts = newPosts;
@@ -143,12 +143,10 @@ const renderApp = () => {
   }
 
   if (page === USER_POSTS_PAGE) {
-    // TODO: реализовать страницу фотографию пользвателя- done
+    // TODO: реализовать страницу фотографию пользвателя- DONE
     return renderPostsPageComponent({
       appEl,
     });
-    // appEl.innerHTML = "Здесь будет страница фотографий пользователя";
-    // return;   DELETE!!!!!!!
   }
 };
 
