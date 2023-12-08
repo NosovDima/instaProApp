@@ -3,7 +3,7 @@ import { renderHeaderComponent } from "./header-component.js";
 import { posts, goToPage } from "../index.js";
 
 export function renderPostsPageComponent() {
-  // TODO: реализовать рендер постов из api - almost done
+  // TODO: реализовать рендер постов из api -  Done
 
   const appEl = document.getElementById("app");
   const allPosts = posts.map((post) => {
@@ -64,7 +64,7 @@ export function renderPostsPageComponent() {
             ${post.userDescription}
           </p>
           <p class="post-date">
-            ${post.creatDate} 
+            ${post.creatDate} назад
           </p>
         </li>
       </ul>
@@ -83,6 +83,8 @@ export function renderPostsPageComponent() {
   // renderHeaderComponent({
   //   element: document.querySelector(".header-container"),
   // });
+
+  // HERE!!!!!!!! COMMENT BACK
 
   for (let userEl of document.querySelectorAll(".post-header")) {
     userEl.addEventListener("click", () => {

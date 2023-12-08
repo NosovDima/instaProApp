@@ -1,7 +1,9 @@
 // Замени на свой, чтобы получить независимый от других набор данных.
 // "боевая" версия инстапро лежит в ключе prod
-// const personalKey = "prod";
-const personalKey = "testwork"
+
+import { updatePosts } from "./index.js";
+const personalKey = "prod";
+// const personalKey = "testwork";
 const baseHost = "https://webdev-hw-api.vercel.app";
 const postsHost = `${baseHost}/api/v1/${personalKey}/instapro`;
 
@@ -68,4 +70,30 @@ export function uploadImage({ file }) {
   }).then((response) => {
     return response.json();
   });
+}
+
+export function userPostsPage({ token, userId }) {
+  return fetch(`${postsHost}/user-posts/${userId}`, {
+    method: "GET",
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((response) => {
+      if (response.status === 500) {
+        throw new Error("The server has failed");
+      } else if (response.status === 401) {
+        throw new Error("Not authorized");
+      } else {
+        return response.json();
+      }
+    })
+    .then((data) => {
+      updatePosts(data.posts);
+      return data.posts;
+    })
+    .catch((error) => {
+      alert("Something went wrong, try to enter again");
+      console.warn(error);
+    });
 }
