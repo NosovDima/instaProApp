@@ -2,6 +2,10 @@
 // "боевая" версия инстапро лежит в ключе prod
 
 import { updatePosts } from "./index.js";
+
+
+
+
 const personalKey = "prod";
 // const personalKey = "testwork";
 const baseHost = "https://webdev-hw-api.vercel.app";
@@ -68,7 +72,33 @@ export function uploadImage({ file }) {
     method: "POST",
     body: data,
   }).then((response) => {
-    return response.json();
+    if (response.status === 400) {
+      alert("Размер изображение слишком большой");
+      throw new Error("Размер изображение превышает допустимый");
+    } else {
+      return response.json();
+    }
+  });
+}
+
+export function uploadPost({ token, imageUrl }) {
+  const descriptionElement = document.getElementById("description");
+  return fetch(postsHost, {
+    method: "POST",
+    body: JSON.stringify({
+      description: descriptionElement,
+      imageUrl,
+    }),
+    headers: {
+      Authorization: token,
+    },
+  }).then((response) => {
+    if (response.status === 400) {
+      alert("Добавьте описание и фото");
+      throw new Error("Часть данных не заполнена");
+    } else {
+      return response.json();
+    }
   });
 }
 

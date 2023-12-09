@@ -80,9 +80,9 @@ export function renderPostsPageComponent() {
 
   appEl.innerHTML = appHtml;
 
-  // renderHeaderComponent({
-  //   element: document.querySelector(".header-container"),
-  // });
+  renderHeaderComponent({
+    element: document.querySelector(".header-container"),
+  });
 
   // HERE!!!!!!!! COMMENT BACK
 

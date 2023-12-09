@@ -131,7 +131,13 @@ const renderApp = () => {
       onAddPostClick({ description, imageUrl }) {
         // TODO: реализовать добавление поста в API
         console.log("Добавляю пост...", { description, imageUrl });
-        goToPage(POSTS_PAGE);
+
+        uploadPost({
+          token: getToken(),
+          imageUrl,
+        }).then(() => {
+          goToPage(POSTS_PAGE);
+        });
       },
     });
   }
