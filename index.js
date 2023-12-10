@@ -1,4 +1,4 @@
-import { getPosts, userPostsPage } from "./api.js";
+import { getPosts, userPostsPage, uploadPost } from "./api.js";
 import { renderAddPostPageComponent } from "./components/add-post-page-component.js";
 import { renderAuthPageComponent } from "./components/auth-page-component.js";
 import {
@@ -79,7 +79,6 @@ export const goToPage = (newPage, data) => {
       console.log("Открываю страницу пользователя: ", data.userId);
       renderApp();
       const userId = data.userId;
-      // HERE!!!!!!!!!!!!!!
 
       return userPostsPage({ token: getToken(), userId: userId })
         .then((newPosts) => {
@@ -102,7 +101,7 @@ export const goToPage = (newPage, data) => {
   throw new Error("страницы не существует");
 };
 
-const renderApp = () => {
+export const renderApp = () => {
   const appEl = document.getElementById("app");
   if (page === LOADING_PAGE) {
     return renderLoadingPageComponent({
@@ -131,7 +130,13 @@ const renderApp = () => {
       onAddPostClick({ description, imageUrl }) {
         // TODO: реализовать добавление поста в API
         console.log("Добавляю пост...", { description, imageUrl });
-        goToPage(POSTS_PAGE);
+
+        uploadPost({
+          token: getToken(),
+          imageUrl,
+        }).then(() => {
+          goToPage(POSTS_PAGE);
+        });
       },
     });
   }
