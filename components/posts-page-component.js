@@ -26,7 +26,7 @@ export function renderPostsPageComponent() {
       isLiked: post.isLiked,
       usersLikes: post.likes,
       description: post.description,
-      // createdAt:
+
     };
   });
 
@@ -85,7 +85,7 @@ export function renderPostsPageComponent() {
             ${post.description}
           </p>
           <p class="post-date">
-            ${post.createdAt} назад
+  
           </p>
         </li>
       </ul>
