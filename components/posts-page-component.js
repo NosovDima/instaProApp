@@ -85,7 +85,7 @@ export function renderPostsPageComponent() {
             ${post.description}
           </p>
           <p class="post-date">
-  
+
           </p>
         </li>
       </ul>
