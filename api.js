@@ -3,7 +3,7 @@
 
 import { updatePosts, renderApp } from "./index.js";
 
-// const personalKey = "prod";
+
 const personalKey = "testwork";
 const baseHost = "https://wedev-api.sky.pro";
 const postsHost = `${baseHost}/api/v1/${personalKey}/instapro`;

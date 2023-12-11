@@ -10,6 +10,8 @@ import {
 } from "../index.js";
 import { addLike, removeLike, getPosts, postDelete } from "../api.js";
 import { replaceFunction } from "../helpers.js";
+import { formatDistanceToNow } from "date-fns";
+import { ru } from "date-fns/locale";
 
 export function renderPostsPageComponent() {
   // TODO: реализовать рендер постов из api -  Done
@@ -20,13 +22,15 @@ export function renderPostsPageComponent() {
       postId: post.id,
       userId: post.user.id,
       userImageUrl: post.user.imageUrl,
+      createdAt: formatDistanceToNow(new Date(post.createdAt), {
+        locale: ru,
+      }),
       userName: replaceFunction(post.user.name),
       userLogin: post.user.login,
       imageUrl: post.imageUrl,
       isLiked: post.isLiked,
       usersLikes: post.likes,
       description: post.description,
-      // createdAt:
     };
   });
 
@@ -44,19 +48,13 @@ export function renderPostsPageComponent() {
               <img src="${post.userImageUrl}" class="post-header__user-image">
               <p class="post-header__user-name">${post.userName}</p>
           </div>
-          <div class="delete-button-container">
-              <button class="delete-button ${
-                userStorage === null || post.userId !== userStorageId
-                  ? "hidden"
-                  : ""
-              }" id="button-delete" data-post-id="${
-        post.postId
-      }">Удалить</button>
-            </div>
+          
           <div class="post-image-container">
             <img class="post-image" data-post-id="${post.postId}" src="${
         post.imageUrl
       }" data-index="${index}">
+      <div class="like-animation"></div>
+
             </div>
           <div class="post-likes">
             <button data-post-id="${
@@ -79,6 +77,17 @@ export function renderPostsPageComponent() {
                   : "0"
               }
             </p>
+            <div class="delete-button-container">
+              <button class="delete-button ${
+                userStorage === null || post.userId !== userStorageId
+                  ? "hidden"
+                  : ""
+              }" id="button-delete" data-post-id="${
+        post.postId
+      }">Удалить</button>
+            </div>
+
+
           </div>
           <p class="post-text">
             <span class="user-name">${post.userName}</span>

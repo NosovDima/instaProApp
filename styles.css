@@ -196,3 +196,48 @@
   width: 100%;
   text-align: center;
 }
+
+.delete-button-container {
+  margin-left: auto;
+}
+
+.delete-button {
+  margin-top: 10px;
+  font-family: "Tahoma", sans-serif;
+  font-weight: bold;
+  text-align: center;
+  width: 80px;
+  height: 35px;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: rgb(254, 254, 254);
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  background-image: linear-gradient(
+    to right,
+    #899ac0 0%,
+    #5289e7 51%,
+    #1655e8 100%
+  );
+}
+
+.delete-button:hover {
+  background-position: right center;
+}
+.logout-button {
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #0056b3;
+}
+
+
